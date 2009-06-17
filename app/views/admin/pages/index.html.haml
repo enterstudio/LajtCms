@@ -1,0 +1,6 @@
+- if @root_page.nil?
+  %p= link_to 'New strona główna', new_admin_page_path(:parent_id => nil)
+  %p Nie stworzono jeszcze głównej strony
+- else
+  %ul#pages= render :partial => 'page', :object => @root_page, :locals => { :level => 1 }
+

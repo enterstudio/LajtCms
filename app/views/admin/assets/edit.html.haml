@@ -1,0 +1,36 @@
+%h2 Edytuj załącznik
+
+%p= link_to 'Cofnij', assets_path
+
+- form_for @asset, :html => { :multipart => true } do |f|
+  = f.error_messages
+  %p
+    = f.label :title, 'Tytuł'
+    %br
+    = f.text_field :title
+  %p
+    = f.label :asset_file, 'Plik'
+    %br
+    = f.file_field :asset_file
+  %p= f.submit 'Aktualizuj'
+  %p= link_to 'Cofnij', assets_path
+
+  %h3 Aktualny plik
+  %p
+    %strong Nazwa pliku:
+    = @asset.asset_file.original_filename
+    %br
+    %strong Typ pliku:
+    = @asset.asset_file.content_type
+    %br
+    %strong Rozmiar:
+    = number_to_human_size @asset.asset_file.size
+    %br
+    - if @asset.asset_file.content_type =~ /^image/
+      %strong Miniaturka:
+      %br
+      = link_to image_tag(@asset.asset_file.url(:thumb)), @asset
+      %br
+      = link_to 'Pokaż wszystkie rozmiary', @asset
+    - else
+      = link_to 'Pokaż plik', @asset

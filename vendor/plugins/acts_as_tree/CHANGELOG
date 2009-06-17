@@ -1,0 +1,14 @@
+2009-01-15 - Sean Huber (shuber@huberry.com)
+  * Remove unused test/fixture files
+  * Remove nested active_record/acts/tree file structure
+  * Update README
+  * Add MIT-LICENSE
+  * Update documentation
+  * Clean up logic
+  * Gemify
+
+2008-08-18 - Sean Huber (shuber@huberry.com)
+	* Added is_root? instance method and tests
+
+2008-08-18 - Sean Huber (shuber@huberry.com)
+	* The foreign_key for "parent" can't be a reference to the current node or any of its children

@@ -1,0 +1,45 @@
+%h2 Stwórz nową stronę
+
+%p= link_to 'Cofnij', admin_pages_path
+
+- form_for @page, :url => admin_pages_path do |f|
+
+  = f.error_messages
+
+  - AppConfig.languages.each do |language, lang|
+    %p
+      = f.label :"title_#{lang}", "Tytuł dla języka #{language.capitalize}"
+      %br
+      = f.text_field :"title_#{lang}"
+
+  - AppConfig.languages.each do |language, lang|
+    %p.page_content_box{ :id => "page_content_#{lang}_box" }
+      = f.label :"content_#{lang}", "Zawartość dla języka #{language.capitalize}"
+      %br
+      = f.text_area :"content_#{lang}"
+
+  %p
+    = f.hidden_field :parent_id, :value => params[:parent_id]
+    = f.submit 'Zapisz', :id => :create, :name => :create
+    = f.submit 'Zapisz i edytuj dalej', :id => :create_and_stay, :name => :create_and_stay
+
+%p= link_to 'Cofnij się', admin_pages_path
+
+%script{:type => "text/javascript"}<
+  //<![CDATA[
+  var oFCKeditor = new FCKeditor('page_content_en', '100%', '500px', 'Simple');
+  oFCKeditor.BasePath = "/javascripts/fckeditor/"
+  oFCKeditor.Config['CustomConfigurationsPath'] = '/javascripts/fckcustom.js';
+  oFCKeditor.ReplaceTextarea();
+  
+  var oFCKeditor = new FCKeditor('page_content_de', '100%', '500px', 'Simple');
+  oFCKeditor.BasePath = "/javascripts/fckeditor/"
+  oFCKeditor.Config['CustomConfigurationsPath'] = '/javascripts/fckcustom.js';
+  oFCKeditor.ReplaceTextarea();
+  
+  var oFCKeditor = new FCKeditor('page_content_pl', '100%', '500px', 'Simple');
+  oFCKeditor.BasePath = "/javascripts/fckeditor/"
+  oFCKeditor.Config['CustomConfigurationsPath'] = '/javascripts/fckcustom.js';
+  oFCKeditor.ReplaceTextarea();
+  
+  //]]>

@@ -1,0 +1,14 @@
+%li{ :id => "page-#{page.id}", :class => "level-#{level}" }
+  .title= link_to page.title, edit_admin_page_path(page)
+  .options
+    - unless level > 3
+      = link_to image_tag('admin/add.png'), new_admin_page_path(:parent_id => page.id), :title => 'Add subpage'
+    - unless page == @root_page
+      = link_to image_tag('admin/delete.png'), admin_page_path(page), :confirm => 'Are you sure?', :method => :delete, :title => 'Delete page'
+      - unless page.parent.children.length == 1
+        - unless page == page.parent.children.first
+          = link_to image_tag('admin/arrow_up.png'), move_up_admin_page_path(page), :title => 'Move up'
+        - unless page == page.parent.children.last
+          = link_to image_tag('admin/arrow_down.png'), move_down_admin_page_path(page), :title => 'Move down'
+- unless page.children.empty?
+  = render :partial => 'admin/pages/page', :collection => page.children, :locals => { :level => level + 1 }

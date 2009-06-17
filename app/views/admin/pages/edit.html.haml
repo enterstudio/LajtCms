@@ -1,0 +1,65 @@
+%h2 Edytuj stronę
+
+%p
+  = link_to 'Cofnij', admin_pages_path
+  |
+  = link_to 'Pokaż', show_page_path(:path => @page.path_array, :lang => AppConfig.languages.values.first)
+
+- form_for @page, :url => admin_page_path(@page) do |f|
+
+  = f.error_messages
+
+  - AppConfig.languages.each do |language, lang|
+    %p
+      = f.label :"title_#{lang}", "Tytuł dla języka #{language.capitalize}"
+      %br
+      = f.text_field :"title_#{lang}"
+
+  %p
+    = f.label :slug
+    %br
+    = f.text_field :slug
+
+  - AppConfig.languages.each do |language, lang|
+    %p.page_content_box{ :id => "page_content_#{lang}_box" }
+      = f.label :"content_#{lang}", "Treść dla języka #{language.capitalize}"
+      %br
+      = f.text_area :"content_#{lang}"
+
+  .pagination
+    - if @prev_page.nil?
+      %span &laquo; Previous page
+    - else
+      = link_to '&laquo; Wcześniejsza strona', edit_admin_page_path(@prev_page)
+    - if @next_page.nil?
+      %span Next page &raquo;
+    - else
+      = link_to 'Nastepna strona &raquo;', edit_admin_page_path(@next_page)
+
+  %p
+    = f.submit 'Zapisz', :id => :save, :name => :save
+    = f.submit 'Zapisz i edytuj dalej', :id => :save_and_stay, :name => :save_and_stay
+
+%p
+  = link_to 'Cofnij się', admin_pages_path
+  |
+  = link_to 'Pokaż', show_page_path(:path => @page.path_array, :lang => AppConfig.languages.values.first)
+  
+%script{:type => "text/javascript"}<
+  //<![CDATA[
+  var oFCKeditor = new FCKeditor('page_content_en', '100%', '500px', 'Simple');
+  oFCKeditor.BasePath = "/javascripts/fckeditor/"
+  oFCKeditor.Config['CustomConfigurationsPath'] = '/javascripts/fckcustom.js';
+  oFCKeditor.ReplaceTextarea();
+  
+  var oFCKeditor = new FCKeditor('page_content_de', '100%', '500px', 'Simple');
+  oFCKeditor.BasePath = "/javascripts/fckeditor/"
+  oFCKeditor.Config['CustomConfigurationsPath'] = '/javascripts/fckcustom.js';
+  oFCKeditor.ReplaceTextarea();
+  
+  var oFCKeditor = new FCKeditor('page_content_pl', '100%', '500px', 'Simple');
+  oFCKeditor.BasePath = "/javascripts/fckeditor/"
+  oFCKeditor.Config['CustomConfigurationsPath'] = '/javascripts/fckcustom.js';
+  oFCKeditor.ReplaceTextarea();
+  
+  //]]>

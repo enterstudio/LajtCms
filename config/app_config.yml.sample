@@ -1,0 +1,20 @@
+common:
+  languages:
+    polski: pl
+    german: de
+    english: en
+  image_sizes:
+    large: '520x520>'
+    medium: '300x300>'
+    thumb: '100x100#'
+
+development:
+  image_sizes:
+    large: '520x520>'
+    medium: '300x300>'
+    thumb: '100x100#'
+    thumb_dev: '100x50#'
+
+test:
+
+production:

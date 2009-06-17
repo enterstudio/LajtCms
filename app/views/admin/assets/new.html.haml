@@ -1,0 +1,17 @@
+%h2 Nowy załącznik
+
+%p= link_to 'Cofnij', assets_path
+
+- form_for @asset, :html => { :multipart => true } do |f|
+  = f.error_messages
+  %p
+    = f.label :title, 'Nazwa pliku'
+    %br
+    = f.text_field :title
+  %p
+    = f.label :asset_file, 'Plik'
+    %br
+    = f.file_field :asset_file
+  %p= f.submit 'Zapisz'
+
+%p= link_to 'Cofnij', assets_path

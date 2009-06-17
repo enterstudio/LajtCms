@@ -1,0 +1,25 @@
+!!! 1.0 Transitional
+%html{ :xmlns => 'http://www.w3.org/1999/xhtml', 'xml:lang' => 'en', :lang => 'en'  }
+
+  %head
+    %meta{ 'http-equiv' => 'Content-Type', :content => 'text/html; charset=utf-8' }/
+    %title== LajtCMS - #{page_title_helper}
+    %link{ :rel => 'shortcut icon', :href => '/favicon.ico' }
+    = stylesheet_link_tag 'blueprint/screen.css', :media => 'screen, projection'
+    = stylesheet_link_tag 'blueprint/print.css', :media => 'print'
+    /[if IE]
+      = stylesheet_link_tag 'blueprint/ie.css', :media => 'screen, projection'
+    = stylesheet_link_tag 'application'
+    = javascript_include_tag 'jquery-1.3.1.min.js', 'application'
+    = javascript_include_tag :fckeditor
+
+  %body{ :id => body_id_helper }
+    .container
+      #header.span-24.last
+        = render 'pages/header'
+      #menu.span-4
+        = render 'pages/menu'
+      #content.span-20.last
+        = yield
+      #footer.span-24.last
+        = render 'pages/footer'

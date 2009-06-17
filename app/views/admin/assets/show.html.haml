@@ -1,0 +1,19 @@
+%h2 Pokaż załącznik
+
+%p= link_to 'Cofnij', assets_path
+
+- if @asset.asset_file.content_type =~ /^image/
+  - @image_sizes.each do |size, dimensions|
+    %p
+      %strong= size
+      == (#{dimensions})
+      %br
+      = image_tag @asset.asset_file.url(size)
+- else
+  %p
+    = @asset.asset_file.content_type
+    file
+
+%p= link_to 'Cofnij', assets_path
+
+

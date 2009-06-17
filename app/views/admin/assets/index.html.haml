@@ -1,0 +1,56 @@
+%p= link_to 'Dodaj nowy załącznik', new_asset_path
+
+- if @assets.empty?
+  %p Narazie brak zapisanych załączników.
+- else
+  %ul#assets
+    %li.header
+      .thumbnail
+        Miniaturka
+      .caption
+        - if params[:sort] == 'title'
+          = link_to 'Tytuł', assets_path(params.merge(:sort => 'title_desc'))
+          = image_tag 'admin/bullet_arrow_down.png'
+        - elsif params[:sort] == 'title_desc'
+          = link_to 'Tytuł', assets_path(params.merge(:sort => 'title'))
+          = image_tag 'admin/bullet_arrow_up.png'
+        - else
+          = link_to 'Tytuł', assets_path(params.merge(:sort => 'title'))
+      .filename
+        - if params[:sort] == 'filename'
+          = image_tag 'admin/bullet_arrow_down.png'
+          = link_to 'Nazwa pliku', assets_path(params.merge(:sort => 'filename_desc'))
+        - elsif params[:sort] == 'filename_desc'
+          = image_tag 'admin/bullet_arrow_up.png'
+          = link_to 'Nazwa pliku', assets_path(params.merge(:sort => 'filename'))
+        - else
+          = link_to 'Nazwa pliku', assets_path(params.merge(:sort => 'filename'))
+      .id
+        - if params[:sort] == 'id' || params[:sort].nil?
+          = image_tag 'admin/bullet_arrow_down.png'
+          = link_to 'Id', assets_path(params.merge(:sort => 'id_desc'))
+        - elsif params[:sort] == 'id_desc'
+          = image_tag 'admin/bullet_arrow_up.png'
+          = link_to 'Id', assets_path(params.merge(:sort => nil))
+        - else
+          = link_to 'Id', assets_path(params.merge(:sort => nil))
+    - @assets.each do |asset|
+      %li{ :class => cycle(:odd, :even) }
+        - if asset.asset_file.content_type =~ /^image/
+          .thumbnail= link_to image_tag(asset.asset_file.url(:thumb_dev)), edit_asset_path(asset)
+        - else
+          .thumbnail
+            = asset.asset_file.content_type
+            file
+        .caption
+          = link_to asset.title, edit_asset_path(asset)
+        .options
+          = link_to image_tag('admin/zoom.png'), asset, :title => 'Pokaż załącznik'
+          = link_to image_tag('admin/delete.png'), asset, :confirm => 'Jesteś pewien?', :method => :delete, :title => 'Usuń załącznik'
+        .filename
+          = asset.asset_file.original_filename
+        .id
+          == ##{asset.id}
+
+  = will_paginate @assets
+  = page_e_info @assets

@@ -1,0 +1,6 @@
+%h2= @page.title(params[:lang])
+
+- PARSER.context.globals.lang = params[:lang]
+- content_for_lang = @page.attributes["content_#{params[:lang]}"]
+- parsed_content = PARSER.parse(content_for_lang) || ''
+= RDiscount.new(parsed_content).try(:to_html)

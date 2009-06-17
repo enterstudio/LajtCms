@@ -1,0 +1,7 @@
+config/database.yml
+config/app_config.yml
+log/*.log
+*.tmproj
+*~
+public/system/**/*
+tmp/**/*

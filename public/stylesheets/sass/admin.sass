@@ -1,0 +1,186 @@
+body
+  font-family:                              Arial, Helvetica, sans-serif
+  color:                                    #555
+  font-size:                                0.8em
+
+h1, h2, h3, h4, h5, h6
+  color:                                    #555
+  font-weight:                              bold
+  letter-spacing:                           -2px
+
+input[type="text"],
+textarea
+  width:                                    100%
+  margin-top:                               0.3em
+
+textarea
+  height:                                   300px
+
+.container
+  border-top:                               10px solid #8FD448
+  border-bottom:                            10px solid #8FD448
+
+.errorExplanation
+  color:                                    #f00
+
+
+// Header
+
+#header
+  margin:                                   30px 0
+
+  h1
+    margin:                                 0
+
+
+// Menu
+
+#menu
+  position:                                 relative
+  font-size:                                1.5em
+  margin-bottom:                            1em
+  border-bottom:                            5px solid #ccc
+
+  a
+    padding:                                5px 15px
+    background-color:                       #ccc
+    text-decoration:                        none
+
+    &.current
+      font-weight:                          bold
+      color:                                #444
+
+  #show_page
+    position:                               absolute
+    right:                                  0
+    top:                                    0
+
+
+// Footer
+
+#footer
+  margin:                                   10px 0
+
+
+// Pages
+
+ul#pages
+  margin:                                   0
+  list-style-type:                          none
+
+  li
+    width:                                  100%
+    height:                                 30px
+    background-color:                       #ddd
+    margin-bottom:                          5px
+    position:                               relative
+
+    &:hover
+      background-color:                     #ccc
+
+    .title
+      font-size:                            1.5em
+      display:                              inline-block
+
+      a
+        text-decoration:                    none
+
+    &.level-1 .title
+      padding-left:                         10px
+
+    &.level-2 .title
+      padding-left:                         30px
+
+    &.level-3 .title
+      padding-left:                         50px
+
+    &.level-4 .title
+      padding-left:                         70px
+
+    .options
+      width:                                100px
+      position:                             absolute
+      right:                                0
+      top:                                  7px
+
+.page_content_box
+  margin-bottom:                            0.5em
+
+  a
+    padding:                                0.5em 1em
+    margin-right:                           0.5em
+    background-color:                       #ddd
+    text-decoration:                        none
+
+    &.current
+      color:                                #444
+      background-color:                     #ccc
+      cursor:                               default
+      font-weight:                          bold
+
+.pagination
+  float:                                    right
+
+  a, span
+    padding:                                5px 10px
+    background-color:                       #ddd
+
+  .current
+    font-weight:                            bold
+
+
+// Assets
+
+ul#assets
+  margin:                                   1em 0
+  list-style-type:                          none
+
+  li
+    height:                                 70px
+    position:                               relative
+
+    img
+      margin-top:                           5px
+      border:                               1px solid #bbb
+
+    &.even
+      background-color:                     #ddd
+
+    &.header
+      font-weight:                          bold
+      height:                               2em
+      margin-bottom:                        1em
+
+      img
+        margin:                             0
+        border-width:                       0
+
+    .thumbnail
+      width:                                100px
+      position:                             absolute
+      left:                                 10px
+      top:                                  5px
+
+    .caption
+      position:                             absolute
+      left:                                 150px
+      top:                                  5px
+
+    .options
+      position:                             absolute
+      left:                                 150px
+      bottom:                               9px
+
+      img
+        margin:                             0
+        border-width:                       0
+
+    .filename
+      position:                             absolute
+      right:                                60px
+      top:                                  5px
+
+    .id
+      position:                             absolute
+      right:                                10px
+      top:                                  5px

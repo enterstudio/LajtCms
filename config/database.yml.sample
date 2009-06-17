@@ -1,0 +1,18 @@
+defaults: &defaults
+  username: root
+  password: root
+  host: localhost
+  adapter: mysql
+  encoding: utf8
+
+development:
+  database: basic_cms_dev
+  <<: *defaults
+
+test:
+  database: basic_cms_test
+  <<: *defaults
+
+production:
+  database: basic_cms_production
+  <<: *defaults
